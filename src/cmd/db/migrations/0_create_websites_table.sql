@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS websites (
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    url TEXT
+);
