@@ -6,7 +6,6 @@ import { loadEnvConfig } from "@next/env";
 import { db } from "../../lib/db";
 import { cleanSQL } from "../../utils/cleanSQL";
 import { splitSqlStatements } from "../../utils/splitSQLStatements";
-import { init } from "./init";
 
 import type { LibsqlError } from "@libsql/client/http";
 
@@ -62,7 +61,6 @@ function getStatements(filePath: string): string[] {
 (async () => {
   console.log(`🔧 Migrating database...`);
 
-  await init();
   const sqlFiles = getSortedSQLFiles();
   const lastMigrationOrder = await requestLastMigrationOrder();
 

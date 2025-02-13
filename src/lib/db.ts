@@ -1,4 +1,4 @@
-import { Client, createClient } from "@libsql/client/http";
+import { Client, createClient, Row } from "@libsql/client/http";
 
 export function db(): Client {
   const url = process.env.TURSO_DATABASE_URL?.trim();
@@ -17,4 +17,13 @@ export function db(): Client {
     url: process.env.TURSO_DATABASE_URL as string,
     authToken: process.env.TURSO_AUTH_TOKEN as string,
   });
+}
+
+export function inferRows<T>(rows: Row[]): T[] {
+  const result = rows.map((obj) =>
+    Object.fromEntries(
+      Object.entries(obj).map(([key, value]) => [key.toLowerCase(), value])
+    )
+  );
+  return result as T[];
 }

@@ -5,10 +5,10 @@ export enum STATE {
 }
 
 interface Props {
-  state: STATE;
+  state?: STATE;
 }
 
-export function Status(props: Props) {
+export function WebsiteStatus(props: Props) {
   const { state = STATE.STALE } = props;
 
   let color = "bg-gray-500";
