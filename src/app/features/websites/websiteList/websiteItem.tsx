@@ -1,12 +1,12 @@
-import { STATE, Status } from "./status";
+import { STATE, WebsiteStatus } from "./websiteStatus";
 
 export interface Website {
   url: string;
   name: string;
-  state: STATE;
-  uptime: number;
-  responseTime: number;
-  lastChecked: string;
+  state?: STATE;
+  uptime?: number;
+  responseTime?: number;
+  lastChecked?: string;
 }
 
 export function WebsiteItem(props: Website) {
@@ -16,7 +16,7 @@ export function WebsiteItem(props: Website) {
     <div className="my-1 border border-gray-700 rounded-lg p-4 max-w-xs">
       <div className="flex justify-between">
         <h3 className="font-bold">{name}</h3>
-        <Status state={state} />
+        <WebsiteStatus state={state} />
       </div>
 
       <div>
@@ -25,17 +25,21 @@ export function WebsiteItem(props: Website) {
 
       <div className="flex justify-between">
         <span className="text-sm">Uptime</span>
-        <span className="text-sm font-medium">{uptime}%</span>
+        <span className="text-sm font-medium">
+          {uptime ? `${uptime}%` : "-"}
+        </span>
       </div>
 
       <div className="flex justify-between">
         <span className="text-sm">Response Time</span>
-        <span className="text-sm font-medium">{responseTime}ms</span>
+        <span className="text-sm font-medium">
+          {responseTime ? `${responseTime}ms` : "-"}
+        </span>
       </div>
 
       <div className="flex justify-between">
         <span className="text-sm">Last Checked</span>
-        <span className="text-sm font-medium">{lastChecked}</span>
+        <span className="text-sm font-medium">{lastChecked || "-"}</span>
       </div>
     </div>
   );
